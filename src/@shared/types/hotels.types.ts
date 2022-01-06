@@ -1,8 +1,25 @@
-interface ILngAttr {
+export interface ILngAttr {
   'en-US'?: string;
   'de-DE'?: string;
   'fr-FR'?: string;
   'es-ES'?: string;
+  'sp-SP'?: string;
+}
+export type Lng = 'en-US' | 'de-DE' | 'fr-FR' | 'es-ES' | 'sp-SP'
+
+type Benefit = {
+  text: ILngAttr;
+}
+
+type Deal = {
+  expireTime: string;
+  headline: ILngAttr;
+  details: ILngAttr;
+}
+
+type Image = {
+  url: string;
+  caption: ILngAttr;
 }
 
 export interface IHotel {
@@ -16,20 +33,11 @@ export interface IHotel {
   city: ILngAttr;
   description: ILngAttr;
 
-  benefits: {
-    text: ILngAttr;
-  }[];
+  benefits: Benefit[];
 
-  deals: {
-    expireTime: string;
-    headLine: ILngAttr;
-    details: ILngAttr;
-  }[];
+  deals: Deal[];
 
-  images: {
-    url: string;
-    caption: ILngAttr;
-  }[];
+  images: Image[];
   lat?: number;
   lng?: number;
 }

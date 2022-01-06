@@ -1,4 +1,4 @@
-import { BASE_URL, HOTELS_ENDPOINT, IResponse } from '../types/hotels.types';
+import { BASE_URL, HOTELS_ENDPOINT, IResponse } from '../@shared/types/hotels.types';
 import { apiService } from './api.service';
 
 const HOTELS_URI = BASE_URL + '/hotels';

@@ -1,7 +1,17 @@
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
+import { FunctionComponent } from 'react';
+import { ILngAttr } from '../../@shared/types/hotels.types';
+import { getLngString } from '../../helper/index';
 
-export const HotelCard = () => {
+type IHotelCardProps = {
+  img: {
+    url: string;
+    caption: ILngAttr;
+  };
+};
+
+export const HotelCard: FunctionComponent<IHotelCardProps> = ({ img }) => {
   return (
     <Card
       sx={{
@@ -16,9 +26,9 @@ export const HotelCard = () => {
       <CardMedia
         component='img'
         height='425'
-        image='https://picsum.photos/800/301/?random'
-        alt='green iguana'
+        image={img.url}
+        alt={getLngString(img.caption)}
       />
     </Card>
   );
-}
+};

@@ -1,5 +1,5 @@
 import {createAction} from '@reduxjs/toolkit';
-import { IApiResponse } from '../../types/hotels.types';
+import { IApiResponse } from '../../@shared/types/hotels.types';
 
 export const hotelActionTypes = {
   HOTELS_REQUEST: '[hotels] request',

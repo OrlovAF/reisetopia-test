@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios';
 // import { PayloadAction } from '@reduxjs/toolkit';
 import { hotelActions } from './hotels.actions';
 import hotelService from '../../services/hotels.service'
-import { IApiResponse} from '../../types/hotels.types';
+import { IApiResponse} from '../../@shared/types/hotels.types';
 
 function* getHotels() {
   try {

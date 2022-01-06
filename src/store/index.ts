@@ -3,7 +3,7 @@ import { applyMiddleware, createStore, Store } from 'redux';
 // import { useDispatch } from 'react-redux'
 import { rootReducer } from './root.reducer';
 import rootSaga from './root.saga';
-import { IHotel } from '../types/hotels.types';
+import { IHotel } from '../@shared/types/hotels.types';
 
 export interface AppState {
   hotels: IHotel[]

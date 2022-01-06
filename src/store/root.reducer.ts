@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import { IHotel } from '../types/hotels.types';
+import { IHotel } from '../@shared/types/hotels.types';
 import { hotelActions } from './hotels/hotels.actions';
 
 

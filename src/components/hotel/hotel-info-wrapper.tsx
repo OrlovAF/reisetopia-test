@@ -2,47 +2,49 @@ import Typography from '@mui/material/Typography';
 import { HotelInfoContent } from './hotel-info-content';
 import { ColorButton } from '../button/button';
 import background from '../../assets/Hotel_Ad_Background@2x.png';
-import { styles } from '../../@shared/styles';
+import { FunctionComponent } from 'react';
+import { IHotel, BASE_URL } from '../../@shared/types/hotels.types';
+import { getLngString } from '../../helper/index';
+import start from '../../assets/Star.svg';
+import startTop from '../../assets/Top_Element_Star_Icon.svg';
 
-export const HotelInfoWrapper = () => {
+type HotelInfoWrapProps = Pick<IHotel, 'benefits' | 'name' | 'id' | 'deals'>;
+
+//hardcode only for test.
+const LINK = BASE_URL + '/hotels/anfrage-details/?numPersons=2&numRooms=1&hotelId=';
+
+export const HotelInfoWrapper: FunctionComponent<HotelInfoWrapProps> = ({
+  benefits,
+  name,
+  id,
+  deals,
+}) => {
   const handleClick = () => {
-    window.open('http://github.com', '_blank');
+    window.open(LINK + id, '_blank');
   };
+
+  const deal = deals.length ? getLngString(deals[0].headline) : '';
+
   return (
-    <div
-      style={{
-        position: 'absolute',
-        border: '0.699999988079071px solid #9E9297',
-        borderRadius: '5px',
-        height: '230px',
-        width: '95%',
-        color: 'white',
-        top: '410px',
-      }}
-    >
-      <div style={{ position: 'relative' }}>
-        <Typography variant='subtitle1'>Header here</Typography>
-        <Typography variant='h5' style={{ color: styles.textColor }}>
-          Hotel Nama
-        </Typography>
-        <HotelInfoContent />
-        <ColorButton onClick={handleClick} variant='contained'>
-          Contained
-        </ColorButton>
-        <img
-          src={background}
-          style={{
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            width: '100%',
-            height: 'auto',
-            objectFit: 'cover',
-            opacity: 0.4,
-            zIndex: -1
-          }}
-        ></img>
+    <div className='info-wrapper'>
+      <Typography variant='h5' className='hotel-name' style={{ color: '#FFFFFF' }}>
+        {name['en-US']}{' '}
+      </Typography>
+      <img src={startTop} className='top-star'></img>
+      <div className='info-content-wrapper'>
+        <div style={{ position: 'relative' }}>
+          <Typography variant='subtitle1' style={{ paddingTop: '35px' }}>
+            {deal && <img src={start} />}
+            <span style={{ marginLeft: '15px' }}>{deal}</span>
+          </Typography>
+
+          <HotelInfoContent benefits={benefits.slice(0, 3)} />
+          <img src={background} className='background-img'></img>
+        </div>
       </div>
+      <ColorButton onClick={handleClick} variant='contained' style={{ marginTop: '-22px' }}>
+        Direkt anfragen
+      </ColorButton>
     </div>
   );
 };

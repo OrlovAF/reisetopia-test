@@ -1,44 +1,30 @@
 import * as cars from '3d-react-carousal';
-import { ThemeProvider } from '@emotion/react';
-import { IHotel } from '../types/hotels.types';
-// import * as React from 'react';
+import { FunctionComponent } from 'react';
+
+import { IHotel } from '../@shared/types/hotels.types';
 import { HotelCard } from './hotel/hotel-card';
 import { HotelInfoWrapper } from './hotel/hotel-info-wrapper';
-import { globalTheme } from '../@shared/styles'
 
 const { Carousel }: any = cars;
+type SliderProps = {
+  list: IHotel[];
+};
 
-export function Slider({ list }: { list: IHotel[] }) {
-  console.log('list lng- ', list.length);
-
-  let slides = list.map((el) => {
+export const Slider: FunctionComponent<SliderProps> = ({ list }) => {
+  let slides = list.map(({ images, benefits, name, id, deals }) => {
+    const props = { benefits, name, id, deals };
     return (
       <>
-        <HotelCard />
-        <HotelInfoWrapper />
+        <HotelCard img={images[0]} />
+        <HotelInfoWrapper {...props} />
       </>
     );
   });
 
   return (
-    <ThemeProvider theme={globalTheme}>
-      <div className='App'>
-        <header className='App-header'>
-          <h1 className='App-title'></h1>
-        </header>
-      This is our carousal Component:
-        <br />
-        <br />
-        <br />
-        <Carousel slides={slides} />
-      </div>
-    </ThemeProvider>
+    <div className='App'>
+      <br />
+      <Carousel slides={slides} />
+    </div>
   );
-}
-
-
-
-
-
-
-
+};
